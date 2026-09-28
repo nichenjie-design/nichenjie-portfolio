@@ -929,6 +929,71 @@ section {
 .cert-card-corner.bl { bottom: 6px; left: 6px; border-bottom-width: 2px; border-left-width: 2px; }
 .cert-card-corner.br { bottom: 6px; right: 6px; border-bottom-width: 2px; border-right-width: 2px; }
 
+/* 手绘速写画廊 */
+.sketch-section { padding-top: 60px; padding-bottom: 40px; }
+.sketch-gallery {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 8px;
+  margin-top: 20px;
+}
+.sketch-item {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid var(--cyan);
+  background: var(--black-2);
+  transition: all 0.3s var(--ease-out);
+}
+.sketch-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(0.15) contrast(1.05);
+  transition: all 0.4s var(--ease-out);
+}
+.sketch-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 40%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex; align-items: flex-end; justify-content: center;
+  padding-bottom: 8px;
+}
+.sketch-overlay span {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.sketch-item:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 15px var(--cyan-glow);
+  transform: translateY(-3px);
+  z-index: 2;
+}
+.sketch-item:hover img { filter: grayscale(0) contrast(1.1); transform: scale(1.08); }
+.sketch-item:hover .sketch-overlay { opacity: 1; }
+
+.sketch-note {
+  text-align: center;
+  margin-top: 16px;
+  font-size: 0.8rem;
+  color: var(--gray);
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+}
+.sketch-note-icon { margin-right: 6px; }
+
+@media (max-width: 900px) {
+  .sketch-gallery { grid-template-columns: repeat(5, 1fr); }
+}
+@media (max-width: 480px) {
+  .sketch-gallery { grid-template-columns: repeat(4, 1fr); gap: 4px; }
+  .sketch-section { padding-top: 40px; padding-bottom: 30px; }
+}
+
 /* 技能 */
 .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0; border: 1px solid var(--cyan); box-shadow: 0 0 20px var(--cyan-dim); }
 .skill-card { padding: 28px 24px; border-right: 1px solid var(--cyan); border-bottom: 1px solid var(--cyan); transition: all 0.2s; position: relative; overflow: hidden; background: rgba(17, 24, 32, 0.4); }
@@ -1077,6 +1142,70 @@ section {
   max-height: 70vh;
   object-fit: contain;
   box-shadow: 0 0 30px var(--cyan-dim);
+}
+
+/* 手绘弹窗 */
+.sketch-overlay-modal { position: fixed; inset: 0; z-index: 1300; background: rgba(5, 8, 12, 0.96); backdrop-filter: blur(8px); opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; display: flex; align-items: center; justify-content: center; padding: 4vh 4vw; }
+.sketch-overlay-modal.open { opacity: 1; visibility: visible; }
+.sketch-modal {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.sketch-modal-img {
+  max-width: 90vw;
+  max-height: 80vh;
+  object-fit: contain;
+  border: 1px solid var(--cyan);
+  box-shadow: 0 0 40px var(--cyan-glow);
+  background: var(--black-2);
+}
+.sketch-modal-close {
+  position: absolute;
+  top: -40px; right: 0;
+  font-size: 1.8rem;
+  color: var(--white-2);
+  cursor: pointer;
+  z-index: 10;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  background: none;
+  border: none;
+}
+.sketch-modal-close:hover { color: var(--cyan); }
+.sketch-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px; height: 44px;
+  background: rgba(10, 14, 20, 0.8);
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  z-index: 10;
+}
+.sketch-nav:hover { background: var(--cyan); color: var(--black); }
+.sketch-prev { left: -60px; }
+.sketch-next { right: -60px; }
+.sketch-modal-counter {
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--cyan);
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 768px) {
+  .sketch-prev { left: 4px; }
+  .sketch-next { right: 4px; }
+  .sketch-nav { width: 36px; height: 36px; }
 }
 
 .modal-close { position: absolute; top: 0; right: 0; width: 48px; height: 48px; background: var(--cyan); color: var(--black); z-index: 10; display: flex; align-items: center; justify-content: center; transition: all 0.2s; border-left: 1px solid var(--cyan); border-bottom: 1px solid var(--cyan); }
@@ -1937,6 +2066,62 @@ section {
   </div>
 </section>
 
+<!-- 手绘速写 -->
+<div class="warning-stripe" style="opacity:0.5;" aria-hidden="true"></div>
+<section class="reveal visible sketch-section" id="sketch">
+  <div class="section-num">03.5 / SKETCH</div>
+  <h2 class="section-title">手绘<span class="red">速写</span></h2>
+  <p class="section-subtitle">日常手绘小练习，记录灵感，打磨手感。点击可放大查看。</p>
+
+  <div class="sketch-gallery">
+    <div class="sketch-item" onclick="openSketchModal(0)">
+      <img src="sketch-01.jpg" alt="手绘练习 01" loading="lazy">
+      <div class="sketch-overlay"><span>01</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(1)">
+      <img src="sketch-02.jpg" alt="手绘练习 02" loading="lazy">
+      <div class="sketch-overlay"><span>02</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(2)">
+      <img src="sketch-03.jpg" alt="手绘练习 03" loading="lazy">
+      <div class="sketch-overlay"><span>03</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(3)">
+      <img src="sketch-04.jpg" alt="手绘练习 04" loading="lazy">
+      <div class="sketch-overlay"><span>04</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(4)">
+      <img src="sketch-05.jpg" alt="手绘练习 05" loading="lazy">
+      <div class="sketch-overlay"><span>05</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(5)">
+      <img src="sketch-06.jpg" alt="手绘练习 06" loading="lazy">
+      <div class="sketch-overlay"><span>06</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(6)">
+      <img src="sketch-07.jpg" alt="手绘练习 07" loading="lazy">
+      <div class="sketch-overlay"><span>07</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(7)">
+      <img src="sketch-08.jpg" alt="手绘练习 08" loading="lazy">
+      <div class="sketch-overlay"><span>08</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(8)">
+      <img src="sketch-09.jpg" alt="手绘练习 09" loading="lazy">
+      <div class="sketch-overlay"><span>09</span></div>
+    </div>
+    <div class="sketch-item" onclick="openSketchModal(9)">
+      <img src="sketch-10.jpg" alt="手绘练习 10" loading="lazy">
+      <div class="sketch-overlay"><span>10</span></div>
+    </div>
+  </div>
+
+  <div class="sketch-note">
+    <span class="sketch-note-icon">✏️</span>
+    <span>10 张日常手绘练习 · 马克笔 / 针管笔 / 彩铅</span>
+  </div>
+</section>
+
 <!-- 经历 -->
 <div class="warning-stripe" style="opacity:0.5;" aria-hidden="true"></div>
 <section class="reveal visible" id="experience">
@@ -2437,8 +2622,51 @@ function closeCertModal() {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') {
     closeCertModal();
+    closeSketchModal();
   }
+  if (e.key === 'ArrowRight') nextSketch();
+  if (e.key === 'ArrowLeft') prevSketch();
 });
+
+// 手绘弹窗
+var sketchImages = [
+  'sketch-01.jpg','sketch-02.jpg','sketch-03.jpg','sketch-04.jpg','sketch-05.jpg',
+  'sketch-06.jpg','sketch-07.jpg','sketch-08.jpg','sketch-09.jpg','sketch-10.jpg'
+];
+var sketchOverlay, sketchCurrent = 0;
+function openSketchModal(index) {
+  sketchCurrent = index;
+  if (!sketchOverlay) {
+    sketchOverlay = document.createElement('div');
+    sketchOverlay.className = 'sketch-overlay-modal';
+    sketchOverlay.innerHTML = '<div class="sketch-modal"><button class="sketch-modal-close" onclick="closeSketchModal()" aria-label="关闭">&times;</button><button class="sketch-nav sketch-prev" onclick="prevSketch()" aria-label="上一张">&#10094;</button><button class="sketch-nav sketch-next" onclick="nextSketch()" aria-label="下一张">&#10095;</button><img class="sketch-modal-img" alt="手绘练习"><div class="sketch-modal-counter"></div></div>';
+    document.body.appendChild(sketchOverlay);
+    sketchOverlay.addEventListener('click', function(e) {
+      if (e.target === sketchOverlay) closeSketchModal();
+    });
+  }
+  updateSketchModal();
+  sketchOverlay.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function updateSketchModal() {
+  sketchOverlay.querySelector('.sketch-modal-img').src = sketchImages[sketchCurrent];
+  sketchOverlay.querySelector('.sketch-modal-counter').textContent = (sketchCurrent + 1) + ' / ' + sketchImages.length;
+}
+function nextSketch() {
+  if (!sketchOverlay || !sketchOverlay.classList.contains('open')) return;
+  sketchCurrent = (sketchCurrent + 1) % sketchImages.length;
+  updateSketchModal();
+}
+function prevSketch() {
+  if (!sketchOverlay || !sketchOverlay.classList.contains('open')) return;
+  sketchCurrent = (sketchCurrent - 1 + sketchImages.length) % sketchImages.length;
+  updateSketchModal();
+}
+function closeSketchModal() {
+  if (sketchOverlay) sketchOverlay.classList.remove('open');
+  document.body.style.overflow = '';
+}
 
 modalClose.addEventListener('click', closeModal);
 overlay.addEventListener('click', function(e) {
