@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>倪辰杰 - 简历与作品集</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Microsoft YaHei', 'PingFang SC', 'Noto Sans SC', sans-serif; color: #222; line-height: 1.6; background: #fff; }
+  
+  .page { width: 210mm; min-height: 297mm; padding: 18mm 16mm; page-break-after: always; position: relative; }
+  .page:last-child { page-break-after: auto; }
+  
+  /* ========== 简历首页 ========== */
+  .resume-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 3px solid #111; padding-bottom: 12px; margin-bottom: 16px; }
+  .resume-name { font-size: 28px; font-weight: 900; letter-spacing: 2px; color: #111; }
+  .resume-name-en { font-size: 13px; color: #666; letter-spacing: 3px; margin-top: 2px; }
+  .resume-title { font-size: 14px; color: #444; margin-top: 6px; font-weight: 600; }
+  .resume-contact { text-align: right; font-size: 11px; color: #555; line-height: 1.8; }
+  .resume-contact span { display: block; }
+  
+  .section { margin-bottom: 14px; }
+  .section-title { font-size: 15px; font-weight: 700; color: #111; border-left: 4px solid #111; padding-left: 10px; margin-bottom: 8px; letter-spacing: 1px; }
+  
+  .about-text { font-size: 11.5px; color: #333; line-height: 1.8; text-align: justify; }
+  .about-text strong { color: #111; }
+  
+  .info-grid { display: flex; flex-wrap: wrap; gap: 4px 0; margin-top: 6px; }
+  .info-item { width: 50%; font-size: 11px; padding: 2px 0; }
+  .info-label { display: inline-block; width: 70px; color: #888; font-size: 10px; }
+  .info-value { color: #222; font-weight: 600; }
+  
+  .skill-grid { display: flex; gap: 10px; margin-top: 4px; }
+  .skill-col { flex: 1; }
+  .skill-cat { font-size: 11px; font-weight: 700; color: #333; margin-bottom: 4px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .skill-tag { font-size: 10px; padding: 2px 8px; background: #f3f4f6; border: 1px solid #e0e0e0; border-radius: 2px; color: #444; }
+  
+  .timeline-item { display: flex; margin-bottom: 8px; }
+  .timeline-period { width: 120px; font-size: 10.5px; color: #888; font-weight: 600; flex-shrink: 0; }
+  .timeline-content { flex: 1; }
+  .timeline-role { font-size: 12px; font-weight: 700; color: #222; }
+  .timeline-org { font-size: 11px; color: #666; margin-top: 1px; }
+  .timeline-desc { font-size: 10.5px; color: #555; margin-top: 2px; line-height: 1.6; }
+  
+  .cert-list { display: flex; gap: 8px; flex-wrap: wrap; }
+  .cert-item { font-size: 10.5px; padding: 4px 10px; background: #f8f8f8; border-left: 3px solid #111; color: #333; }
+  .cert-item strong { color: #111; }
+  
+  /* ========== 作品集页 ========== */
+  .portfolio-cover { text-align: center; padding-top: 60mm; }
+  .portfolio-cover-title { font-size: 36px; font-weight: 900; letter-spacing: 4px; color: #111; }
+  .portfolio-cover-sub { font-size: 14px; color: #666; margin-top: 8px; letter-spacing: 2px; }
+  .portfolio-cover-line { width: 60px; height: 3px; background: #111; margin: 16px auto; }
+  .portfolio-cover-info { font-size: 11px; color: #888; margin-top: 12px; line-height: 2; }
+  
+  .project-page { padding: 14mm 16mm; }
+  .project-header { border-bottom: 2px solid #111; padding-bottom: 8px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: flex-end; }
+  .project-title-cn { font-size: 22px; font-weight: 800; color: #111; }
+  .project-title-en { font-size: 12px; color: #888; letter-spacing: 2px; margin-top: 2px; }
+  .project-meta { text-align: right; font-size: 10px; color: #666; line-height: 1.7; }
+  .project-meta strong { color: #111; }
+  
+  .project-desc { font-size: 11px; color: #333; line-height: 1.8; margin-bottom: 10px; text-align: justify; }
+  
+  .project-highlights { margin-bottom: 10px; }
+  .project-highlights-title { font-size: 12px; font-weight: 700; color: #111; margin-bottom: 4px; }
+  .project-highlights ul { list-style: none; }
+  .project-highlights li { font-size: 10.5px; color: #444; padding-left: 14px; position: relative; margin-bottom: 2px; }
+  .project-highlights li::before { content: ''; position: absolute; left: 0; top: 6px; width: 6px; height: 6px; background: #111; }
+  
+  .project-sections { margin-bottom: 10px; }
+  .project-section-row { display: flex; margin-bottom: 4px; }
+  .project-section-label { width: 80px; font-size: 10.5px; font-weight: 700; color: #555; flex-shrink: 0; }
+  .project-section-content { flex: 1; font-size: 10.5px; color: #333; }
+  
+  .project-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 6px; }
+  .project-tag { font-size: 9.5px; padding: 2px 8px; background: #f0f0f0; border: 1px solid #ddd; color: #555; }
+  
+  .project-image { width: 100%; margin-bottom: 8px; }
+  .project-image img { width: 100%; display: block; }
+  .project-image-label { font-size: 9.5px; color: #999; text-align: center; margin-top: 2px; }
+  
+  .project-images-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 8px; }
+  .project-images-grid img { width: calc(50% - 3px); height: auto; object-fit: contain; }
+  
+  .award-badge { display: inline-block; font-size: 10px; padding: 3px 10px; background: #111; color: #fff; font-weight: 600; margin-bottom: 6px; }
+  
+  .page-number { position: absolute; bottom: 8mm; right: 16mm; font-size: 9px; color: #aaa; }
+</style>
+</head>
+<body>
+
+<!-- ========== 第1页：简历 ========== -->
+<div class="page">
+  <div class="resume-header">
+    <div>
+      <div class="resume-name">倪辰杰</div>
+      <div class="resume-name-en">NI CHENJIE</div>
+      <div class="resume-title">环境设计师 · ENVIRONMENTAL DESIGNER</div>
+    </div>
+    <div class="resume-contact">
+      <span>电话：137-7322-7758</span>
+      <span>邮箱：1340192928@qq.com</span>
+      <span>微信：Ncj1340192928</span>
+      <span>地址：江苏苏州</span>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">个人简介</div>
+    <div class="about-text">
+      <p>兰州交通大学环境设计专业在读本科（2023-2027），日本千叶大学交换留学生。专业前 10%，GPA 3.6。专注于环境设计与空间体验的探索，同时对产品设计、服务设计有浓厚兴趣。相信好的设计应该<strong>解决真实问题</strong>，而不仅仅是视觉表达。</p>
+      <p style="margin-top:4px;">具备 CAD、SketchUp、D5 Render、UE5、Blender 等设计工具能力，熟悉从场地调研到方案落地的全流程。深度掌握 <strong>AIGC 设计工具链</strong>，熟练运用 Midjourney、Stable Diffusion、ComfyUI 进行概念可视化与方案迭代，精通 AI 视频生成（Seedance、可灵）与图像后期处理，能够独立完成从概念草图到最终渲染的全流程 AI 辅助设计。将 AI 能力融入产品设计、环境设计与服务设计的各个环节，显著提升设计效率与创意边界。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">基本信息</div>
+    <div class="info-grid">
+      <div class="info-item"><span class="info-label">出生年月</span><span class="info-value">2005.02</span></div>
+      <div class="info-item"><span class="info-label">籍贯</span><span class="info-value">江苏苏州</span></div>
+      <div class="info-item"><span class="info-label">院校</span><span class="info-value">兰州交通大学</span></div>
+      <div class="info-item"><span class="info-label">交换院校</span><span class="info-value">日本千叶大学</span></div>
+      <div class="info-item"><span class="info-label">专业</span><span class="info-value">环境设计</span></div>
+      <div class="info-item"><span class="info-label">绩点</span><span class="info-value">3.6 / 专业前10%</span></div>
+      <div class="info-item"><span class="info-label">政治面貌</span><span class="info-value">共青团员</span></div>
+      <div class="info-item"><span class="info-label">求职状态</span><span class="info-value">寻求机会中</span></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">教育背景</div>
+    <div class="timeline-item">
+      <div class="timeline-period">2025.09 — 2026.03</div>
+      <div class="timeline-content">
+        <div class="timeline-role">交换生 · 日本千叶大学</div>
+        <div class="timeline-org">工学部 · 设计学科</div>
+        <div class="timeline-desc">主修社会服务设计原理、工业产品设计、服务产品设计意识等课程。跨文化设计思维拓展，参与中日联合设计工作坊。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2023.09 — 2027.06</div>
+      <div class="timeline-content">
+        <div class="timeline-role">本科 · 兰州交通大学</div>
+        <div class="timeline-org">环境设计专业 · GPA 3.6（专业前 10%）</div>
+        <div class="timeline-desc">主修课程：环境设计概论、风景园林设计、室内外设计、CAD、SketchUp、D5 Render、UE5 等。系统掌握环境设计理论与实践方法。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">实习经历</div>
+    <div class="timeline-item">
+      <div class="timeline-period">2026.06 — 2026.08</div>
+      <div class="timeline-content">
+        <div class="timeline-role">环境设计规划师（实习）</div>
+        <div class="timeline-org">海澜之家集团股份有限公司</div>
+        <div class="timeline-desc">参与环境设计项目全流程实习工作，协助完成场地调研、方案草图绘制、效果图辅助制作。配合团队进行资料整理、文本排版与方案汇报准备。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2025.06 — 2025.08</div>
+      <div class="timeline-content">
+        <div class="timeline-role">服务课程培训师（实习）</div>
+        <div class="timeline-org">张家港市丰辉教育培训中心有限公司</div>
+        <div class="timeline-desc">负责收集市场反馈与客户关系维护，有效提升公司品牌口碑。结合产品定位与目标客群策划并执行推广活动，协助线下宣传落地。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2024.01 — 2024.03</div>
+      <div class="timeline-content">
+        <div class="timeline-role">市场部宣传员（实习）</div>
+        <div class="timeline-org">北京芥么优品有限公司苏州张家港分部</div>
+        <div class="timeline-desc">搜集市场反馈并进行客户关系维护，提高公司的口碑，优化销售不足。根据公司产品定位和目标人群展开推广活动。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">技能矩阵</div>
+    <div class="skill-grid">
+      <div class="skill-col">
+        <div class="skill-cat">设计软件</div>
+        <div class="skill-tags">
+          <span class="skill-tag">CAD</span><span class="skill-tag">SketchUp</span><span class="skill-tag">D5 Render</span><span class="skill-tag">UE5</span><span class="skill-tag">Photoshop</span><span class="skill-tag">Blender</span><span class="skill-tag">InDesign</span><span class="skill-tag">Figma</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">专业能力</div>
+        <div class="skill-tags">
+          <span class="skill-tag">空间设计</span><span class="skill-tag">景观设计</span><span class="skill-tag">室内设计</span><span class="skill-tag">产品设计</span><span class="skill-tag">服务设计</span><span class="skill-tag">场地调研</span>
+        </div>
+      </div>
+      <div class="skill-col">
+        <div class="skill-cat">AIGC 工具</div>
+        <div class="skill-tags">
+          <span class="skill-tag">Midjourney</span><span class="skill-tag">Stable Diffusion</span><span class="skill-tag">ComfyUI</span><span class="skill-tag">Seedance</span><span class="skill-tag">可灵</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">证书荣誉</div>
+    <div class="cert-list">
+      <div class="cert-item"><strong>CJT 大学日语四级</strong> · 合格 · 2025</div>
+      <div class="cert-item"><strong>未来设计师大赛</strong> · 甘肃赛区三等奖 · 2025</div>
+      <div class="cert-item"><strong>千叶大学</strong> · 交换留学结业 · 2025</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">校园经历</div>
+    <div class="timeline-item">
+      <div class="timeline-period">2023.09 — 2027.06</div>
+      <div class="timeline-content">
+        <div class="timeline-role">班长</div>
+        <div class="timeline-org">兰州交通大学</div>
+        <div class="timeline-desc">负责沟通师生联系并组织相关交流会议。协助发放教材、收集资料、统计信息、评奖评优、助学金、综测材料整理等工作。</div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-period">2023.09 — 2025.06</div>
+      <div class="timeline-content">
+        <div class="timeline-role">自律委员会成员</div>
+        <div class="timeline-org">兰州交通大学</div>
+        <div class="timeline-desc">定期协助开展宿舍安全与卫生查寝工作，排查安全隐患，引导同学保持良好宿舍环境，维护宿舍秩序与集体生活氛围。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-number">第 1 页</div>
+</div>
+
+<!-- ========== 第2页：作品集封面 ========== -->
+<div class="page">
+  <div class="portfolio-cover">
+    <div class="portfolio-cover-title">PORTFOLIO</div>
+    <div class="portfolio-cover-sub">作品集</div>
+    <div class="portfolio-cover-line"></div>
+    <div class="portfolio-cover-info">
+      倪辰杰 / NI CHENJIE<br>
+      环境设计 · 产品设计 · 服务设计 · AIGC<br>
+      2025 — 2026
+    </div>
+  </div>
+  <div class="page-number">第 2 页</div>
+</div>
+
+<!-- ========== 第3页：作品1 道路卫士 ========== -->
+<div class="page project-page">
+  <div class="project-header">
+    <div>
+      <div class="project-title-cn">道路卫士</div>
+      <div class="project-title-en">ROAD GUARDIAN</div>
+    </div>
+    <div class="project-meta">
+      <div><strong>分类</strong>：产品设计</div>
+      <div><strong>年份</strong>：2025</div>
+      <div><strong>周期</strong>：3 个月</div>
+      <div><strong>角色</strong>：主创设计师</div>
+    </div>
+  </div>
+
+  <div class="project-image">
+    <img src="road-page-1-c.jpg" alt="道路卫士 设计展示">
+  </div>
+
+  <div class="project-desc">
+    「道路卫士」是一款面向城市道路维护场景的智能巡检设备设计。针对当前道路巡检效率低、人工排查隐患大的痛点，提出一体化的智能解决方案。项目从道路维护工作者的真实作业场景出发，通过实地调研与用户访谈，梳理巡检流程中的关键问题，定义产品的核心功能与使用场景。在形态设计上，兼顾功能性与工业美学，采用模块化结构设计，便于维护与升级。
+  </div>
+
+  <div class="project-highlights">
+    <div class="project-highlights-title">项目亮点</div>
+    <ul>
+      <li>从实地调研到原型验证的完整设计流程</li>
+      <li>模块化结构设计，兼顾功能与维护性</li>
+      <li>人机工程学驱动的形态与交互优化</li>
+      <li>多方案比选与迭代，共 3 轮概念演进</li>
+    </ul>
+  </div>
+
+  <div class="project-sections">
+    <div class="project-section-row">
+      <div class="project-section-label">设计方法</div>
+      <div class="project-section-content">用户访谈 → 场景分析 → 问题定义 → 概念发散 → 方案收敛 → 原型验证</div>
+    </div>
+    <div class="project-section-row">
+      <div class="project-section-label">使用工具</div>
+      <div class="project-section-content">SketchUp、D5 Render、Photoshop</div>
+    </div>
+  </div>
+
+  <div class="project-images-grid">
+    <img src="road-page-2-c.jpg" alt="道路卫士 方案展示1">
+    <img src="road-page-3-c.jpg" alt="道路卫士 方案展示2">
+  </div>
+
+  <div class="project-tags">
+    <span class="project-tag">产品设计</span><span class="project-tag">服务设计</span><span class="project-tag">人机工程</span><span class="project-tag">三维建模</span><span class="project-tag">SketchUp</span><span class="project-tag">D5 Render</span>
+  </div>
+
+  <div class="page-number">第 3 页</div>
+</div>
+
+<!-- ========== 第4页：作品2 豆荚药盒 ========== -->
+<div class="page project-page">
+  <div class="project-header">
+    <div>
+      <div class="project-title-cn">豆荚药盒</div>
+      <div class="project-title-en">POD+ PILL CASE</div>
+    </div>
+    <div class="project-meta">
+      <div><strong>分类</strong>：产品设计</div>
+      <div><strong>年份</strong>：2025</div>
+      <div><strong>周期</strong>：2 个月</div>
+      <div><strong>角色</strong>：主创设计师</div>
+    </div>
+  </div>
+
+  <div class="project-image">
+    <img src="pill-page-1-c.jpg" alt="豆荚药盒 设计展示">
+  </div>
+
+  <div class="project-desc">
+    「豆荚药盒」是一款以服务设计思维驱动的智能药盒产品，致力于重新定义用药体验。项目关注老年人群体的用药安全与用药依从性问题，提供从产品到服务的系统性解决方案。以「重新定义用药」为核心理念，从用户旅程出发，识别用药过程中的关键痛点：忘吃、吃错、剂量混乱、缺乏关怀感等，构建完整的用药管理闭环。产品形态取意于豆荚，柔和有机的造型语言传递温暖与关怀，打破医疗产品的冰冷感。配套的移动端应用与云端服务系统，实现用药提醒、记录追踪、家属联动等功能，形成「产品 + APP + 服务」的完整生态。
+  </div>
+
+  <div class="project-highlights">
+    <div class="project-highlights-title">项目亮点</div>
+    <ul>
+      <li>服务设计思维驱动的产品创新，超越单一产品形态</li>
+      <li>针对老年用户的易用性深度优化，大按键、语音提醒</li>
+      <li>完整的产品 + APP + 服务系统设计，形成闭环</li>
+      <li>豆荚形态的情感化设计，让医疗产品有温度</li>
+    </ul>
+  </div>
+
+  <div class="project-sections">
+    <div class="project-section-row">
+      <div class="project-section-label">设计方法</div>
+      <div class="project-section-content">用户研究 → 用户旅程地图 → 痛点分析 → 服务蓝图 → 产品定义 → 原型迭代</div>
+    </div>
+    <div class="project-section-row">
+      <div class="project-section-label">使用工具</div>
+      <div class="project-section-content">Figma、Illustrator、SketchUp</div>
+    </div>
+  </div>
+
+  <div class="project-images-grid">
+    <img src="pill-page-2.jpg" alt="豆荚药盒 方案展示1">
+    <img src="pill-page-3.jpg" alt="豆荚药盒 方案展示2">
+  </div>
+
+  <div class="project-tags">
+    <span class="project-tag">产品设计</span><span class="project-tag">服务设计</span><span class="project-tag">用户研究</span><span class="project-tag">UI设计</span><span class="project-tag">Figma</span><span class="project-tag">Illustrator</span>
+  </div>
+
+  <div class="page-number">第 4 页</div>
+</div>
+
+<!-- ========== 第5页：作品3 智能随行宠物陪伴舱 ========== -->
+<div class="page project-page">
+  <div class="project-header">
+    <div>
+      <div class="project-title-cn">智能随行宠物陪伴舱</div>
+      <div class="project-title-en">PET COMPANION POD</div>
+    </div>
+    <div class="project-meta">
+      <div><strong>分类</strong>：AICG / 产品设计</div>
+      <div><strong>年份</strong>：2026</div>
+      <div><strong>周期</strong>：4 个月</div>
+      <div><strong>角色</strong>：主创设计师</div>
+    </div>
+  </div>
+
+  <div class="award-badge">第14届未来设计师大赛 甘肃赛区三等奖</div>
+
+  <div class="project-image">
+    <img src="project3-pet.jpg" alt="智能随行宠物陪伴舱 设计展示">
+  </div>
+
+  <div class="project-desc">
+    「智能随行宠物陪伴舱」是一款面向多场景的智能宠物出行空间设计。项目针对当前宠物出行中的安全、舒适、服务等痛点，从产品、服务、系统三个维度构建完整的宠物出行解决方案。产品以 AI 智能陪伴为核心亮点，集成语音互动、行为识别、健康监测、环境自适应等功能，打造宠物专属的智能移动空间。设计过程中运用 AIGC 工具辅助概念生成与效果呈现，大幅提升设计表达效率。整体造型采用圆润有机的设计语言，内部空间充分考虑宠物行为习惯与舒适需求，配备智能喂食、空气净化、氛围灯光等系统。
+  </div>
+
+  <div class="project-highlights">
+    <div class="project-highlights-title">项目亮点</div>
+    <ul>
+      <li>AIGC 辅助设计：AI 生成概念与效果图，提升设计效率与表现力</li>
+      <li>多场景适配：机场/商场/办公/车载等多出行场景全覆盖</li>
+      <li>AI 智能陪伴：语音互动、行为识别、健康监测一体化</li>
+      <li>服务系统设计：APP 预约 + 智能柜 + 服务生态的完整闭环</li>
+      <li>获奖作品：第14届未来设计师大赛甘肃赛区三等奖</li>
+    </ul>
+  </div>
+
+  <div class="project-sections">
+    <div class="project-section-row">
+      <div class="project-section-label">设计方法</div>
+      <div class="project-section-content">市场调研 → 用户旅程 → 痛点定义 → AIGC概念发散 → 方案迭代 → 系统设计 → 获奖验证</div>
+    </div>
+    <div class="project-section-row">
+      <div class="project-section-label">使用工具</div>
+      <div class="project-section-content">Midjourney、Stable Diffusion、SketchUp、D5 Render、Photoshop</div>
+    </div>
+  </div>
+
+  <div class="project-images-grid">
+    <img src="pet-board-c.jpg" alt="宠物陪伴舱 展板">
+    <img src="pet-structure-c.jpg" alt="宠物陪伴舱 结构展示">
+  </div>
+
+  <div class="project-tags">
+    <span class="project-tag">AICG设计</span><span class="project-tag">产品设计</span><span class="project-tag">服务设计</span><span class="project-tag">智能硬件</span><span class="project-tag">获奖作品</span>
+  </div>
+
+  <div class="page-number">第 5 页</div>
+</div>
+
+<!-- ========== 第6页：作品4 間 MA ========== -->
+<div class="page project-page">
+  <div class="project-header">
+    <div>
+      <div class="project-title-cn">間 MA</div>
+      <div class="project-title-en">MA / Folding Screen Design</div>
+    </div>
+    <div class="project-meta">
+      <div><strong>分类</strong>：环境设计</div>
+      <div><strong>年份</strong>：2025</div>
+      <div><strong>周期</strong>：3 个月</div>
+      <div><strong>角色</strong>：主创设计师</div>
+    </div>
+  </div>
+
+  <div class="project-image">
+    <img src="ma-page-01.jpg" alt="間 MA 屏风设计展示">
+  </div>
+
+  <div class="project-desc">
+    「間 MA」是一件以日本传统美学概念「間（ま）」为核心的屏风设计作品。项目探索东方空间哲学中「虚与实」「空与有」的辩证关系，通过屏风这一媒介重新定义空间的边界与呼吸感。设计从日本传统建筑的「缘侧」、「书院造」等空间原型出发，提取「間」的本质——即留白不是空虚，而是一种等待被填充的可能性。屏风不再是简单的隔断，而是空间之间的呼吸带。材质上选用和纸、原木、竹等天然材料，结合现代工艺，在保持传统质感的同时融入当代设计语言。光影穿过和纸时产生的柔和漫射，正是「間」的精神所在。该作品完成于千叶大学交换留学期间。
+  </div>
+
+  <div class="project-highlights">
+    <div class="project-highlights-title">项目亮点</div>
+    <ul>
+      <li>东方美学：以日本「間」的哲学概念为设计核心</li>
+      <li>空间叙事：屏风作为空间呼吸带，重新定义边界</li>
+      <li>材质探索：和纸、原木、竹等天然材料的当代演绎</li>
+      <li>光影设计：利用和纸漫射营造柔和空间氛围</li>
+      <li>跨文化实践：千叶大学交换期间完成的研究型设计</li>
+    </ul>
+  </div>
+
+  <div class="project-sections">
+    <div class="project-section-row">
+      <div class="project-section-label">空间原型</div>
+      <div class="project-section-content">从日本传统建筑「缘侧」「书院造」提取空间逻辑，转化为当代屏风的形态语言。</div>
+    </div>
+    <div class="project-section-row">
+      <div class="project-section-label">材质工艺</div>
+      <div class="project-section-content">和纸、原木、竹材结合现代工艺，在传统质感与当代设计间寻找平衡。</div>
+    </div>
+  </div>
+
+  <div class="project-images-grid">
+    <img src="ma-page-02.jpg" alt="間 MA 方案展示1">
+    <img src="ma-page-03.jpg" alt="間 MA 方案展示2">
+  </div>
+
+  <div class="project-tags">
+    <span class="project-tag">环境设计</span><span class="project-tag">空间设计</span><span class="project-tag">日本美学</span><span class="project-tag">传统工艺</span><span class="project-tag">材料探索</span><span class="project-tag">光影设计</span>
+  </div>
+
+  <div class="page-number">第 6 页</div>
+</div>
+
+</body>
+</html>
