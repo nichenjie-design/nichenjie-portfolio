@@ -157,6 +157,52 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background-image: repeating-linear-gradient(135deg, var(--ikb) 0px, var(--ikb) 1px, transparent 1px, transparent 24px);
 }
 
+/* === Anatomy Contour Lines (解剖线 — dashed section contours, horse reference) === */
+.anatomy-lines {
+  position: absolute; z-index: 0; pointer-events: none;
+}
+.anatomy-lines path { fill: none; stroke: var(--ikb); stroke-width: 1; }
+.anatomy-lines line { stroke: var(--ikb); stroke-width: 1; }
+.anatomy-lines circle { fill: var(--ikb); stroke: none; }
+
+/* === Structure Leader Lines (结构线 — exploded-view callouts, tank reference) === */
+.structure-lines { position: absolute; z-index: 0; pointer-events: none; }
+.structure-lines polyline { fill: none; stroke: var(--ikb); stroke-width: 1; opacity: 0.5; }
+.structure-lines line { stroke: var(--ikb); stroke-width: 1; opacity: 0.35; stroke-dasharray: 2 3; }
+.structure-lines circle { fill: var(--paper-light); stroke: var(--ikb); stroke-width: 1.2; opacity: 0.6; }
+.structure-lines circle.solid { fill: var(--ikb); stroke: none; opacity: 0.55; }
+.structure-lines text { font-family: var(--font-mono); font-size: 9px; fill: var(--ikb); letter-spacing: 0.1em; opacity: 0.6; }
+
+/* === Glass Shards (玻璃碎片 — interactive, mouse parallax + shatter pulse) === */
+.shard-wrap {
+  position: absolute; z-index: 1; pointer-events: none;
+  will-change: transform;
+  transition: transform 0.25s ease-out;
+}
+.glass-shard {
+  width: 100%; height: 100%; position: relative;
+  background: linear-gradient(135deg, rgba(0,47,167,0.18) 0%, rgba(0,47,167,0.05) 42%, rgba(255,255,255,0.65) 100%);
+  border: 1px solid rgba(0,47,167,0.30);
+  box-shadow: inset 0 0 14px rgba(0,47,167,0.08), 2px 4px 12px rgba(10,10,10,0.06);
+  backdrop-filter: blur(1.5px);
+  -webkit-backdrop-filter: blur(1.5px);
+  opacity: 0.9;
+}
+.glass-shard::before { /* glass edge highlight */
+  content: ''; position: absolute; top: 6%; left: 10%; width: 1px; height: 62%;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), transparent);
+}
+.glass-shard::after { /* inner facet line */
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(315deg, rgba(0,47,167,0.10) 0%, transparent 38%);
+}
+.hero.shatter-pulse .glass-shard { animation: shardPulse 0.65s var(--ease-out); }
+@keyframes shardPulse {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  35%  { transform: translate(var(--bx, -10px), var(--by, 6px)) rotate(var(--br, -8deg)); opacity: 1; }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
 /* === Etched Emblem (Hypergryph seal) === */
 .etched-emblem {
   position: fixed; bottom: 40px; left: 40px; z-index: 0; pointer-events: none;
@@ -937,6 +983,10 @@ section {
   border: 1px solid var(--paper-darker); font-weight: 500; transition: all 0.2s;
 }
 .skill-tag:hover { transform: translateY(-2px); border-color: var(--ikb); color: var(--ikb); }
+/* 4th wide card spans full row (AI × 数字能力) */
+.skill-card-wide { grid-column: 1 / -1; border-right: none; border-bottom: none; }
+.skills-grid .skill-card:nth-child(2):nth-last-child(3),
+.skills-grid .skill-card:nth-child(3):nth-last-child(2) { border-bottom: 1px solid var(--ikb); }
 
 /* === Timeline === */
 .timeline { position: relative; padding-left: 0; }
@@ -1402,6 +1452,56 @@ section {
   <div class="glitch-block glitch-block-1" style="bottom:35%;left:6%;width:20px;height:50px;opacity:0.08;" aria-hidden="true"></div>
   <div class="glitch-block" style="top:60%;right:20%;width:8px;height:24px;clip-path:polygon(0 0,100% 0,100% 50%,50% 50%,50% 100%,0 100%);opacity:0.15;" aria-hidden="true"></div>
 
+  <!-- 解剖线 Anatomical dashed contours (horse reference) -->
+  <svg class="anatomy-lines" style="top:10%;right:14%;width:240px;height:470px;" viewBox="0 0 240 470" aria-hidden="true">
+    <path d="M120 14 C 96 74, 146 116, 120 176 C 96 236, 142 276, 120 456" stroke-dasharray="5 4" opacity="0.42"/>
+    <path d="M74 150 C 98 138, 142 138, 166 150" stroke-dasharray="3 3" opacity="0.34"/>
+    <path d="M78 174 C 100 160, 140 160, 162 174" stroke-dasharray="3 3" opacity="0.30"/>
+    <path d="M82 198 C 104 184, 136 184, 158 198" stroke-dasharray="3 3" opacity="0.26"/>
+    <path d="M86 222 C 106 208, 134 208, 154 222" stroke-dasharray="3 3" opacity="0.22"/>
+    <path d="M90 246 C 108 234, 132 234, 150 246" stroke-dasharray="3 3" opacity="0.18"/>
+    <line x1="52" y1="14" x2="188" y2="14" opacity="0.3"/>
+    <line x1="52" y1="456" x2="188" y2="456" opacity="0.3"/>
+    <circle cx="120" cy="14" r="3" opacity="0.45"/>
+    <circle cx="120" cy="456" r="3" opacity="0.45"/>
+  </svg>
+
+  <!-- 结构线 Exploded-view leader lines (tank reference) -->
+  <svg class="structure-lines" style="bottom:4%;left:1.5%;width:330px;height:170px;" viewBox="0 0 330 170" aria-hidden="true">
+    <polyline points="8,36 92,36 124,66"/>
+    <polyline points="8,88 66,88 98,66"/>
+    <polyline points="322,140 246,140 214,112"/>
+    <circle cx="8" cy="36" r="3.5"/>
+    <circle class="solid" cx="124" cy="66" r="2.5"/>
+    <circle cx="8" cy="88" r="3.5"/>
+    <circle class="solid" cx="98" cy="66" r="2.5"/>
+    <circle cx="322" cy="140" r="3.5"/>
+    <circle class="solid" cx="214" cy="112" r="2.5"/>
+    <text x="16" y="40">A-01</text>
+    <text x="16" y="92">A-02</text>
+    <text x="256" y="144">SEC·03</text>
+  </svg>
+
+  <!-- 玻璃碎片 Interactive glass shards (mouse parallax + click shatter) -->
+  <div class="shard-wrap" data-depth="0.5" style="top:12%;right:24%;width:84px;height:58px;">
+    <div class="glass-shard" style="clip-path:polygon(0 0, 100% 14%, 76% 100%, 8% 80%); --bx:-16px; --by:10px; --br:-9deg;"></div>
+  </div>
+  <div class="shard-wrap" data-depth="0.9" style="top:22%;right:4%;width:52px;height:38px;">
+    <div class="glass-shard" style="clip-path:polygon(12% 0, 100% 22%, 70% 100%, 0 68%); --bx:12px; --by:-10px; --br:11deg;"></div>
+  </div>
+  <div class="shard-wrap" data-depth="0.35" style="bottom:26%;right:33%;width:62px;height:46px;">
+    <div class="glass-shard" style="clip-path:polygon(0 30%, 74% 0, 100% 78%, 22% 100%); --bx:-12px; --by:-14px; --br:-12deg;"></div>
+  </div>
+  <div class="shard-wrap" data-depth="0.65" style="bottom:10%;right:11%;width:96px;height:64px;">
+    <div class="glass-shard" style="clip-path:polygon(0 0, 88% 8%, 100% 88%, 14% 100%); --bx:14px; --by:12px; --br:8deg;"></div>
+  </div>
+  <div class="shard-wrap" data-depth="1" style="top:7%;left:34%;width:50px;height:34px;">
+    <div class="glass-shard" style="clip-path:polygon(0 18%, 82% 0, 100% 74%, 18% 100%); --bx:-10px; --by:12px; --br:-14deg;"></div>
+  </div>
+  <div class="shard-wrap" data-depth="0.45" style="bottom:7%;left:22%;width:70px;height:44px;">
+    <div class="glass-shard" style="clip-path:polygon(8% 0, 100% 24%, 72% 100%, 0 74%); --bx:-14px; --by:-8px; --br:10deg;"></div>
+  </div>
+
   <!-- Bullseye target -->
   <div class="bp-target" style="top:28%;left:12%;width:28px;height:28px;opacity:0.3;" aria-hidden="true"></div>
 
@@ -1533,6 +1633,13 @@ section {
 <section class="about reveal visible" id="about">
   <div class="polka-dots" style="top:20px;right:0;width:120px;height:80px;" aria-hidden="true"></div>
   <div class="cut-lines" style="bottom:40px;left:0;width:100px;height:60px;" aria-hidden="true"></div>
+  <svg class="anatomy-lines" style="bottom:20px;right:4%;width:200px;height:150px;" viewBox="0 0 200 150" aria-hidden="true">
+    <path d="M100 8 C 78 44, 122 66, 100 104 C 90 124, 104 132, 100 146" stroke-dasharray="4 4" opacity="0.3"/>
+    <path d="M62 60 C 82 50, 118 50, 138 60" stroke-dasharray="3 3" opacity="0.26"/>
+    <path d="M66 80 C 84 70, 116 70, 134 80" stroke-dasharray="3 3" opacity="0.22"/>
+    <circle cx="100" cy="8" r="2.5" opacity="0.35"/>
+    <circle cx="100" cy="146" r="2.5" opacity="0.35"/>
+  </svg>
   <div>
     <div class="section-num">01 / ABOUT</div>
     <h2 class="section-title">关于<span class="red">我</span></h2>
@@ -1627,6 +1734,16 @@ section {
 <div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
 <section class="reveal visible" id="skills">
   <div class="cut-lines" style="top:30px;right:20px;width:140px;height:50px;" aria-hidden="true"></div>
+  <svg class="structure-lines" style="bottom:14px;right:2%;width:300px;height:130px;" viewBox="0 0 300 130" aria-hidden="true">
+    <polyline points="292,20 220,20 190,48"/>
+    <polyline points="292,76 236,76 206,48"/>
+    <circle cx="292" cy="20" r="3.5"/>
+    <circle class="solid" cx="190" cy="48" r="2.5"/>
+    <circle cx="292" cy="76" r="3.5"/>
+    <circle class="solid" cx="206" cy="48" r="2.5"/>
+    <text x="224" y="24">SK·01</text>
+    <text x="200" y="80">SK·02</text>
+  </svg>
   <div class="section-num">03 / SKILLS</div>
   <h2 class="section-title">技能<span class="red">矩阵</span></h2>
   <p class="section-subtitle">覆盖环境设计全链路，从概念到落地，从软件到思维。</p>
@@ -1679,6 +1796,22 @@ section {
         <div class="industrial-bar-fill" style="width: 80%;"></div>
       </div>
       <div style="font-family: var(--font-mono); font-size: 0.7rem; margin-top: 6px; text-align: right; opacity: 0.6;">PROFICIENCY: 80%</div>
+    </div>
+    <div class="skill-card border-screws skill-card-wide">
+      <div class="skill-card-num">004</div>
+      <h3 class="skill-card-title">AI × 数字能力</h3>
+      <div class="skill-tags">
+        <span class="skill-tag">了解 GitHub</span>
+        <span class="skill-tag">AI 产品制作</span>
+        <span class="skill-tag">AIGC 工作流</span>
+        <span class="skill-tag">AI 视频生成</span>
+        <span class="skill-tag">Prompt 设计</span>
+        <span class="skill-tag">AI 编程协作</span>
+      </div>
+      <div class="industrial-bar" style="margin-top: 16px;">
+        <div class="industrial-bar-fill" style="width: 75%;"></div>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.7rem; margin-top: 6px; text-align: right; opacity: 0.6;">PROFICIENCY: 75%</div>
     </div>
   </div>
 </section>
@@ -2359,6 +2492,40 @@ document.addEventListener('mouseleave', function() {
   cursorGlow.style.opacity = '0';
   glowVisible = false;
 });
+
+// === 玻璃碎片交互：鼠标视差 + 点击碎裂脉冲 ===
+(function() {
+  var hero = document.getElementById('hero');
+  if (!hero) return;
+  var layers = hero.querySelectorAll('[data-depth]');
+  if (!layers.length) return;
+  var raf = null, tx = 0, ty = 0;
+  hero.addEventListener('mousemove', function(e) {
+    var r = hero.getBoundingClientRect();
+    tx = (e.clientX - r.left) / r.width - 0.5;
+    ty = (e.clientY - r.top) / r.height - 0.5;
+    if (raf) return;
+    raf = requestAnimationFrame(function() {
+      layers.forEach(function(el) {
+        var d = parseFloat(el.getAttribute('data-depth')) || 0;
+        el.style.transform = 'translate3d(' + (tx * d * 34).toFixed(1) + 'px,' + (ty * d * 34).toFixed(1) + 'px,0)';
+      });
+      raf = null;
+    });
+  });
+  hero.addEventListener('mouseleave', function() {
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+    layers.forEach(function(el) { el.style.transform = 'translate3d(0,0,0)'; });
+  });
+  // 点击英雄区空白处 → 碎裂脉冲
+  hero.addEventListener('click', function(e) {
+    if (e.target.closest('a, button, .work-nav-item, .ak-photo-frame, .hero-actions')) return;
+    hero.classList.remove('shatter-pulse');
+    void hero.offsetWidth;
+    hero.classList.add('shatter-pulse');
+    setTimeout(function() { hero.classList.remove('shatter-pulse'); }, 700);
+  });
+})();
 
 // 回到顶部
 var backToTop = document.getElementById('backToTop');
