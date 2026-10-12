@@ -1160,6 +1160,8 @@ section {
 .modal-meta-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gray); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 700; }
 .modal-meta-value { font-family: var(--font-industrial); font-size: 0.9rem; font-weight: 700; letter-spacing: 0.03em; }
 .modal-meta-value.red { color: var(--ikb); }
+.modal-meta-value a { color: var(--ikb); text-decoration: underline; text-underline-offset: 2px; }
+.modal-link-note { display: block; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 400; color: var(--gray); letter-spacing: 0.05em; margin-top: 2px; }
 
 .modal-title { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); font-weight: 400; letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 16px; line-height: 1; color: var(--ink); }
 .modal-title-cn { font-family: var(--font-body); font-weight: 900; font-size: 1.1rem; color: var(--gray); margin-bottom: 20px; letter-spacing: 0.2em; }
@@ -1535,14 +1537,14 @@ section {
     </div>
     <div class="work-nav-thumbs">
       <a href="#portfolio" class="work-nav-item">
-        <img src="project1-road.png" alt="道路卫士" class="work-nav-thumb">
+        <img src="project1-road.jpg" alt="道路卫士" class="work-nav-thumb">
         <div class="work-nav-text">
           <span class="work-nav-title">道路卫士</span>
           <span class="work-nav-cat">产品设计 · 2025</span>
         </div>
       </a>
       <a href="#portfolio" class="work-nav-item">
-        <img src="project2-pill.png" alt="豆荚药盒" class="work-nav-thumb">
+        <img src="project2-pill.jpg" alt="豆荚药盒" class="work-nav-thumb">
         <div class="work-nav-text">
           <span class="work-nav-title">豆荚药盒</span>
           <span class="work-nav-cat">产品设计 · 2025</span>
@@ -1560,6 +1562,13 @@ section {
         <div class="work-nav-text">
           <span class="work-nav-title">間 MA</span>
           <span class="work-nav-cat">环境设计 · 2025</span>
+        </div>
+      </a>
+      <a href="#portfolio" class="work-nav-item">
+        <img src="project5-framescope.jpg" alt="FrameScope" class="work-nav-thumb">
+        <div class="work-nav-text">
+          <span class="work-nav-title">FrameScope</span>
+          <span class="work-nav-cat">AI 产品 · 2026</span>
         </div>
       </a>
     </div>
@@ -1964,7 +1973,7 @@ section {
       <button class="filter-btn" data-filter="service">服务设计</button>
     </div>
   </div>
-  <div class="portfolio-grid" id="portfolioGrid"><article class="project-card" data-id="1"><div class="project-card-inner"><div class="project-visual"><img src="project1-road.png" alt="道路卫士" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-001</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">道路卫士</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article><article class="project-card" data-id="2"><div class="project-card-inner"><div class="project-visual"><img src="project2-pill.png" alt="豆荚药盒" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-002</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">豆荚药盒</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article></div>
+  <div class="portfolio-grid" id="portfolioGrid"><article class="project-card" data-id="1"><div class="project-card-inner"><div class="project-visual"><img src="project1-road.jpg" alt="道路卫士" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-001</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">道路卫士</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article><article class="project-card" data-id="2"><div class="project-card-inner"><div class="project-visual"><img src="project2-pill.jpg" alt="豆荚药盒" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-002</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">豆荚药盒</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article></div>
 </section>
 
 <!-- 联系方式 -->
@@ -2057,7 +2066,7 @@ section {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"></path></svg>
     </button>
     <div class="modal-visual">
-      <img src="project2-pill.png" alt="豆荚药盒" class="modal-visual-bg" id="modalVisual" style="object-fit: cover; width: 100%; height: 100%;">
+      <img src="project2-pill.jpg" alt="豆荚药盒" class="modal-visual-bg" id="modalVisual" style="object-fit: cover; width: 100%; height: 100%;">
     </div>
     <div class="modal-body">
       <div class="modal-meta" id="modalMeta">
@@ -2097,7 +2106,7 @@ var projects = [
     category: 'product',
     categoryLabel: '产品设计',
     year: '2025',
-    image: 'project1-road.png',
+    image: 'project1-road.jpg',
     images: ['road-page-1.jpg', 'road-page-2.jpg', 'road-page-3.jpg', 'road-page-4.jpg', 'road-page-5.jpg', 'road-page-6.jpg', 'road-page-7.jpg'],
     role: '主创设计师',
     duration: '3 个月',
@@ -2128,7 +2137,7 @@ var projects = [
     category: 'product',
     categoryLabel: '产品设计',
     year: '2025',
-    image: 'project2-pill.png',
+    image: 'project2-pill.jpg',
     video: 'pill-video.mp4',
     images: ['pill-page-1.jpg', 'pill-page-2.jpg', 'pill-page-3.jpg', 'pill-page-4.jpg', 'pill-page-5.jpg', 'pill-page-6.jpg'],
     role: '主创设计师',
@@ -2161,11 +2170,11 @@ var projects = [
     categoryLabel: 'AICG设计 / 产品设计',
     year: '2026',
     award: '第14届未来设计师大赛甘肃赛区三等奖',
-    image: 'project3-pet.png',
+    image: 'project3-pet.jpg',
     video: 'pet-video.mp4',
-    board: 'pet-board.jpg',
-    structure: 'pet-structure.png',
-    images: ['pet-board.jpg', 'pet-structure.png', 'pet-page-01.jpg', 'pet-page-05.jpg', 'pet-page-07.jpg', 'pet-page-10.jpg', 'pet-page-12.jpg', 'project3-award.jpg', 'project3-pet.png'],
+    board: 'pet-board-c.jpg',
+    structure: 'pet-structure-c.jpg',
+    images: ['pet-board-c.jpg', 'pet-structure-c.jpg', 'pet-page-01.jpg', 'pet-page-05.jpg', 'pet-page-07.jpg', 'pet-page-10.jpg', 'pet-page-12.jpg', 'project3-award.jpg', 'project3-pet.jpg'],
     role: '主创设计师',
     duration: '4 个月',
     client: '未来设计师大赛',
@@ -2226,6 +2235,42 @@ var projects = [
       { title: '光影表达', content: '利用和纸的漫射特性，让光线成为空间的第四维度，营造「間」的精神氛围。' }
     ],
     tags: ['环境设计', '空间设计', '日本美学', '传统工艺', '材料探索', '光影设计']
+  },
+  {
+    id: 5,
+    title: 'FRAMESCOPE',
+    titleCn: 'FrameScope · AI 视频分析',
+    category: 'product',
+    categoryLabel: 'AI 产品',
+    year: '2026',
+    image: 'project5-framescope.jpg',
+    images: [],
+    role: '创意与前端参与',
+    duration: '2026',
+    client: 'AI 产品协作项目',
+    link: 'https://ni-chenjie-framescope.xinyang382119669.chatgpt.site/',
+    linkLabel: '在线作品集 ↗',
+    linkNote: '需翻墙访问 · 演示为预置交互内容',
+    desc: [
+      '「FrameScope」是一款面向短视频创作者、内容运营与小型内容团队的 AI 视频分析工具：把参考视频的开头钩子、节奏、镜头结构与情绪表达，拆解为可复用的结构化创作输入，服务于「拆解 → 理解 → 创作」的产品闭环。',
+      '本人参与项目的创意与前端工作：梳理用户任务与产品流程，搭建「视频输入 → 分析洞察 → 创作输出」的核心交互框架，并完成关键界面的视觉呈现与可用性细节。项目的下载、分析与模型链路由团队协作完成，作为整体产品能力背景。',
+      '产品设计上有三个关键取舍：先确认素材再启动分析，让操作状态更清晰；下载或 Cookie 受限时提供替代路径（本地 MP4 / cookies.txt 重试），失败时始终给用户下一步；分析结果延伸为分镜与创作提示词，支持复制与导出，保证结果可继续使用。',
+      'MVP 聚焦「从一条参考视频到一份可编辑创作方案」的最小闭环，并定义任务完成率、创作采用率、时间成本等建议指标与用户访谈计划，作为后续验证依据（指标尚未实测，将随版本推进补充）。'
+    ],
+    highlights: [
+      '完整产品叙事：用户任务 → 方案取舍 → MVP 边界 → 验证计划',
+      '交互框架设计：视频输入、分析洞察、创作输出三步流程',
+      '失败兜底设计：Cookie 受限时切换本地 MP4，保持任务连续',
+      '结果可用性：分镜与创作提示词支持复制、导出与二次创作',
+      '线上可体验：预置交互演示，无需登录即可走完产品流程'
+    ],
+    sections: [
+      { title: '项目背景', content: '短视频创作高度依赖对参考视频的拆解学习，但人工记录分散、观察难以复用，分析结论与实际创作之间存在断层。' },
+      { title: '产品流程', content: '获取视频（链接 / 本地 MP4，失败提供替代入口）→ 理解内容（标题、字幕与转写）→ 拆解结构（关键帧、镜头与情绪）→ 进入创作（分镜与创作提示词，支持复制导出）。' },
+      { title: '我的职责', content: '创意与前端参与：用户任务梳理、产品流程与交互框架设计、关键界面呈现；下载、分析与模型链路为团队协作背景，不计入个人独立开发贡献。' },
+      { title: 'MVP 与验证', content: 'MVP 聚焦单条视频的最小创作闭环；建议通过任务完成率、创作采用率与时间成本对照验证价值，计划访谈 5 位目标用户（尚未执行）。' }
+    ],
+    tags: ['AI 产品', '产品经理', '交互设计', 'AIGC 应用', 'MVP 设计', '用户验证']
   }
 ];
 
@@ -2336,7 +2381,8 @@ function openModal(project) {
     '<div class="modal-meta-item"><span class="modal-meta-label">YEAR</span><span class="modal-meta-value">' + project.year + '</span></div>' +
     '<div class="modal-meta-item"><span class="modal-meta-label">ROLE</span><span class="modal-meta-value">' + project.role + '</span></div>' +
     '<div class="modal-meta-item"><span class="modal-meta-label">DURATION</span><span class="modal-meta-value">' + project.duration + '</span></div>' +
-    '<div class="modal-meta-item"><span class="modal-meta-label">CLIENT</span><span class="modal-meta-value">' + project.client + '</span></div>';
+    '<div class="modal-meta-item"><span class="modal-meta-label">CLIENT</span><span class="modal-meta-value">' + project.client + '</span></div>' +
+    (project.link ? '<div class="modal-meta-item"><span class="modal-meta-label">LIVE DEMO</span><span class="modal-meta-value"><a href="' + project.link + '" target="_blank" rel="noopener">' + (project.linkLabel || '在线作品集 ↗') + '</a></span>' + (project.linkNote ? '<span class="modal-link-note">' + project.linkNote + '</span>' : '') + '</div>' : '');
 
   overlay.classList.add('open');
   document.body.style.overflow = 'hidden';
