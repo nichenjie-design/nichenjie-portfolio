@@ -983,6 +983,10 @@ section {
   border: 1px solid var(--paper-darker); font-weight: 500; transition: all 0.2s;
 }
 .skill-tag:hover { transform: translateY(-2px); border-color: var(--ikb); color: var(--ikb); }
+/* 弹窗内可跳转标签（点击滚动到作品区并触发筛选） */
+.tag-jump { appearance: none; cursor: pointer; font-family: inherit; }
+.tag-jump::after { content: ' ↗'; font-size: 0.85em; }
+.tag-jump:hover { background: var(--ikb); color: var(--paper); border-color: var(--ikb); }
 /* 4th wide card spans full row (AI × 数字能力) */
 .skill-card-wide { grid-column: 1 / -1; border-right: none; border-bottom: none; }
 .skills-grid .skill-card:nth-child(2):nth-last-child(3),
@@ -1324,6 +1328,8 @@ section {
   .sticker-3, .sticker-4 { display: none; }
   .sticker-1 { top: auto; left: 180px; bottom: 320px; }
   .sticker-2 { top: auto; right: 10%; bottom: 280px; }
+  /* 平板竖屏：隐藏依赖桌面空白区的绝对定位装饰 */
+  .shard-wrap, .bp-target, .bp-coord, .bp-annotation, .anatomy-lines, .structure-lines, .bp-coord-num, .bp-dim-num { display: none; }
 }
 
 @media (max-width: 680px) {
@@ -1333,7 +1339,9 @@ section {
   .nav-links.open { display: flex; position: fixed; top: 60px; left: 0; right: 0; background: var(--paper); flex-direction: column; padding: 16px; gap: 4px; border-bottom: 2px solid var(--ikb); }
   .nav-link { width: 100%; padding: 12px 16px; }
   .hero { padding-top: 80px; }
-  .hero-infobar { flex-wrap: wrap; }
+  .hero-infobar { position: relative; margin-top: 28px; flex-wrap: wrap; }
+  /* 手机竖屏：装饰层无处安放，统一隐藏；信息栏回归文档流避免压住按钮 */
+  .shard-wrap, .bp-target, .bp-coord, .bp-annotation, .anatomy-lines, .structure-lines, .bp-coord-num, .bp-dim-num { display: none; }
   .hero-infobar-item { flex: 1 1 50%; border-bottom: 1px solid var(--paper-darker); }
   .skills-grid { grid-template-columns: 1fr; }
   .skill-card { border-right: none !important; }
@@ -1424,9 +1432,9 @@ section {
   <ul class="nav-links" id="navLinks">
     <li><a href="#hero" class="nav-link">首页</a></li>
     <li><a href="#about" class="nav-link">关于</a></li>
+    <li><a href="#portfolio" class="nav-link active">作品</a></li>
     <li><a href="#skills" class="nav-link">技能</a></li>
     <li><a href="#experience" class="nav-link">经历</a></li>
-    <li><a href="#portfolio" class="nav-link active">作品</a></li>
     <li><a href="#contact" class="nav-link">联系</a></li>
   </ul>
   <a href="#contact" class="nav-cta">CONTACT</a>
@@ -1671,10 +1679,30 @@ section {
   </div>
 </section>
 
+<!-- 作品集 -->
+<div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
+<section class="reveal visible" id="portfolio">
+  <div class="polka-dots" style="top:20px;left:0;width:100px;height:70px;" aria-hidden="true"></div>
+  <div class="section-num">02 / PORTFOLIO</div>
+  <div class="portfolio-header">
+    <div>
+      <h2 class="section-title">精选<span class="red">作品</span></h2>
+    </div>
+    <div class="portfolio-filters" id="portfolioFilters">
+      <button class="filter-btn active" data-filter="all">全部</button>
+      <button class="filter-btn" data-filter="product">产品设计</button>
+      <button class="filter-btn" data-filter="aicg">AICG设计</button>
+      <button class="filter-btn" data-filter="space">空间设计</button>
+      <button class="filter-btn" data-filter="service">服务设计</button>
+    </div>
+  </div>
+  <div class="portfolio-grid" id="portfolioGrid"><article class="project-card" data-id="1"><div class="project-card-inner"><div class="project-visual"><img src="project1-road.jpg" alt="道路卫士" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-001</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">道路卫士</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article><article class="project-card" data-id="2"><div class="project-card-inner"><div class="project-visual"><img src="project2-pill.jpg" alt="豆荚药盒" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-002</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">豆荚药盒</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article></div>
+</section>
+
 <!-- 证书荣誉 -->
 <div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
 <section class="reveal visible" id="certificates">
-  <div class="section-num">02 / CERTIFICATES</div>
+  <div class="section-num">03 / CERTIFICATES</div>
   <h2 class="section-title">证书<span class="red">荣誉</span></h2>
   <p class="section-subtitle">专业资质与获奖认证，持续学习与成长的见证。</p>
 
@@ -1753,7 +1781,7 @@ section {
     <text x="224" y="24">SK·01</text>
     <text x="200" y="80">SK·02</text>
   </svg>
-  <div class="section-num">03 / SKILLS</div>
+  <div class="section-num">04 / SKILLS</div>
   <h2 class="section-title">技能<span class="red">矩阵</span></h2>
   <p class="section-subtitle">覆盖环境设计全链路，从概念到落地，从软件到思维。</p>
 
@@ -1828,7 +1856,7 @@ section {
 <!-- 手绘速写 -->
 <div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
 <section class="reveal visible sketch-section" id="sketch">
-  <div class="section-num">03.5 / SKETCH</div>
+  <div class="section-num">04.5 / SKETCH</div>
   <h2 class="section-title">手绘<span class="red">速写</span></h2>
   <p class="section-subtitle">日常手绘小练习，记录灵感，打磨手感。点击可放大查看。</p>
 
@@ -1884,7 +1912,7 @@ section {
 <!-- 经历 -->
 <div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
 <section class="reveal visible" id="experience">
-  <div class="section-num">04 / EXPERIENCE</div>
+  <div class="section-num">05 / EXPERIENCE</div>
   <h2 class="section-title">经历<span class="red">档案</span></h2>
   <p class="section-subtitle">从校园到职场，从国内到海外，每一步都在拓宽设计的边界。</p>
 
@@ -1954,26 +1982,6 @@ section {
       </div>
     </div>
   </div>
-</section>
-
-<!-- 作品集 -->
-<div class="bp-divider" style="opacity:0.5;" aria-hidden="true"></div>
-<section class="reveal visible" id="portfolio">
-  <div class="polka-dots" style="top:20px;left:0;width:100px;height:70px;" aria-hidden="true"></div>
-  <div class="section-num">05 / PORTFOLIO</div>
-  <div class="portfolio-header">
-    <div>
-      <h2 class="section-title">精选<span class="red">作品</span></h2>
-    </div>
-    <div class="portfolio-filters" id="portfolioFilters">
-      <button class="filter-btn active" data-filter="all">全部</button>
-      <button class="filter-btn" data-filter="product">产品设计</button>
-      <button class="filter-btn" data-filter="aicg">AICG设计</button>
-      <button class="filter-btn" data-filter="space">空间设计</button>
-      <button class="filter-btn" data-filter="service">服务设计</button>
-    </div>
-  </div>
-  <div class="portfolio-grid" id="portfolioGrid"><article class="project-card" data-id="1"><div class="project-card-inner"><div class="project-visual"><img src="project1-road.jpg" alt="道路卫士" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-001</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">道路卫士</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article><article class="project-card" data-id="2"><div class="project-card-inner"><div class="project-visual"><img src="project2-pill.jpg" alt="豆荚药盒" class="project-visual-bg" style="object-fit: cover; width: 100%; height: 100%;"><span class="project-num">PRJ-002</span><div class="project-corner"></div></div><div class="project-info"><div><div class="project-title">豆荚药盒</div></div><div class="project-meta"><div class="cat">产品设计</div><div>2025</div></div></div></div></article></div>
 </section>
 
 <!-- 联系方式 -->
@@ -2244,13 +2252,14 @@ var projects = [
     categoryLabel: 'AI 产品',
     year: '2026',
     image: 'project5-framescope.jpg',
-    images: [],
+    images: ['framescope-case-1.jpg', 'framescope-case-2.jpg', 'framescope-case-3.jpg', 'framescope-case-4.jpg', 'framescope-case-5.jpg', 'framescope-case-6.jpg'],
     role: '创意与前端参与',
     duration: '2026',
     client: 'AI 产品协作项目',
     link: 'https://ni-chenjie-framescope.xinyang382119669.chatgpt.site/',
     linkLabel: '在线作品集 ↗',
     linkNote: '需翻墙访问 · 演示为预置交互内容',
+    galleryLabel: '案例详情（六页）',
     desc: [
       '「FrameScope」是一款面向短视频创作者、内容运营与小型内容团队的 AI 视频分析工具：把参考视频的开头钩子、节奏、镜头结构与情绪表达，拆解为可复用的结构化创作输入，服务于「拆解 → 理解 → 创作」的产品闭环。',
       '本人参与项目的创意与前端工作：梳理用户任务与产品流程，搭建「视频输入 → 分析洞察 → 创作输出」的核心交互框架，并完成关键界面的视觉呈现与可用性细节。项目的下载、分析与模型链路由团队协作完成，作为整体产品能力背景。',
@@ -2270,7 +2279,7 @@ var projects = [
       { title: '我的职责', content: '创意与前端参与：用户任务梳理、产品流程与交互框架设计、关键界面呈现；下载、分析与模型链路为团队协作背景，不计入个人独立开发贡献。' },
       { title: 'MVP 与验证', content: 'MVP 聚焦单条视频的最小创作闭环；建议通过任务完成率、创作采用率与时间成本对照验证价值，计划访谈 5 位目标用户（尚未执行）。' }
     ],
-    tags: ['AI 产品', '产品经理', '交互设计', 'AIGC 应用', 'MVP 设计', '用户验证']
+    tags: ['AI 产品', '产品经理', '交互设计', 'AIGC设计', '服务设计', 'MVP 设计', '用户验证']
   }
 ];
 
@@ -2366,6 +2375,7 @@ function openModal(project) {
   var galleryEl = document.getElementById('modalGallery');
   var galleryLabel = document.getElementById('galleryLabel');
   if (project.images && project.images.length) {
+    galleryLabel.textContent = project.galleryLabel || '作品展示';
     galleryLabel.style.display = 'inline-block';
     galleryEl.innerHTML = project.images.map(function(img, idx) {
       return '<img src="' + img + '" alt="' + project.titleCn + ' 第' + (idx + 1) + '页" class="modal-gallery-img" loading="lazy">';
@@ -2375,7 +2385,12 @@ function openModal(project) {
     galleryEl.innerHTML = '';
   }
 
-  document.getElementById('modalTags').innerHTML = project.tags.map(function(t) { return '<span class="skill-tag">' + t + '</span>'; }).join('');
+  var TAG_FILTER_MAP = { '产品设计': 'product', 'AICG设计': 'aicg', '空间设计': 'space', '服务设计': 'service' };
+  document.getElementById('modalTags').innerHTML = project.tags.map(function(t) {
+    var f = TAG_FILTER_MAP[t];
+    if (f) return '<button type="button" class="skill-tag tag-jump" data-filter="' + f + '" title="查看同类作品">' + t + '</button>';
+    return '<span class="skill-tag">' + t + '</span>';
+  }).join('');
   document.getElementById('modalMeta').innerHTML =
     '<div class="modal-meta-item"><span class="modal-meta-label">CATEGORY</span><span class="modal-meta-value red">' + project.categoryLabel + '</span></div>' +
     '<div class="modal-meta-item"><span class="modal-meta-label">YEAR</span><span class="modal-meta-value">' + project.year + '</span></div>' +
@@ -2394,6 +2409,16 @@ function closeModal() {
   document.body.style.overflow = '';
   if (lastFocused) lastFocused.focus();
 }
+
+// 弹窗内可跳转标签：关闭弹窗 → 滚到作品区 → 触发对应筛选
+document.getElementById('modalTags').addEventListener('click', function(e) {
+  var btn = e.target.closest ? e.target.closest('.tag-jump') : null;
+  if (!btn) return;
+  closeModal();
+  var fb = document.querySelector('.filter-btn[data-filter="' + btn.dataset.filter + '"]');
+  if (fb) fb.click();
+  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth' });
+});
 
 // 证书弹窗
 var certOverlay, certModal;
