@@ -1110,6 +1110,9 @@ section {
 .cert-modal-subtitle { padding: 0 28px 16px; font-size: 0.85rem; color: var(--ikb); font-family: var(--font-mono); letter-spacing: 0.1em; border-bottom: 1px solid var(--ikb); }
 .cert-modal-img-wrap { padding: 24px; display: flex; justify-content: center; background: var(--paper-dark); }
 .cert-modal-img { max-width: 100%; max-height: 70vh; object-fit: contain; }
+.cert-modal-qr { padding: 0 28px 24px; text-align: center; }
+.cert-modal-qr-label { font-size: 0.8rem; color: var(--ikb); font-family: var(--font-mono); letter-spacing: 0.1em; margin-bottom: 10px; }
+.cert-modal-qr-img { width: 200px; max-width: 50%; border: 1px solid var(--line); }
 
 /* Sketch Modal */
 .sketch-overlay-modal {
@@ -1757,6 +1760,44 @@ section {
             <span class="cert-date">2025</span>
           </div>
           <div class="cert-card-desc">日本千叶大学交换留学结业证书，完成环境设计相关课程学习，取得优异成绩。</div>
+        </div>
+        <div class="cert-card-corner tl"></div>
+        <div class="cert-card-corner tr"></div>
+        <div class="cert-card-corner bl"></div>
+        <div class="cert-card-corner br"></div>
+      </div>
+    </div>
+    <div class="cert-card" onclick="openCertModal('cert-aigc-designer.jpg', 'IITC AIGC 设计师', '2026 · 工业和信息化部人才交流中心', 'cert-aigc-designer-qr.jpg')">
+      <div class="cert-card-inner">
+        <div class="cert-card-img-wrap">
+          <img src="cert-aigc-designer.jpg" alt="IITC AIGC设计师证书" class="cert-card-img">
+        </div>
+        <div class="cert-card-info">
+          <div class="cert-card-title">IITC · AIGC 设计师</div>
+          <div class="cert-card-meta">
+            <span class="cert-badge">岗位能力证书</span>
+            <span class="cert-date">2026</span>
+          </div>
+          <div class="cert-card-desc">工业和信息化部人才交流中心颁发，人工智能领域 AIGC 设计师岗位能力评价证书，纳入 IITC 工信人才数据库。</div>
+        </div>
+        <div class="cert-card-corner tl"></div>
+        <div class="cert-card-corner tr"></div>
+        <div class="cert-card-corner bl"></div>
+        <div class="cert-card-corner br"></div>
+      </div>
+    </div>
+    <div class="cert-card" onclick="openCertModal('cert-digital-art-spatial.jpg', 'IITC 数字艺术设计师 — 空间设计', '2026 · 工业和信息化部人才交流中心', 'cert-digital-art-spatial-qr.jpg')">
+      <div class="cert-card-inner">
+        <div class="cert-card-img-wrap">
+          <img src="cert-digital-art-spatial.jpg" alt="IITC 数字艺术设计师空间设计证书" class="cert-card-img">
+        </div>
+        <div class="cert-card-info">
+          <div class="cert-card-title">IITC · 数字艺术设计师</div>
+          <div class="cert-card-meta">
+            <span class="cert-badge">岗位能力证书</span>
+            <span class="cert-date">2026</span>
+          </div>
+          <div class="cert-card-desc">工信部人才交流中心颁发，数字化领域数字艺术设计师（空间设计方向）岗位能力评价证书。</div>
         </div>
         <div class="cert-card-corner tl"></div>
         <div class="cert-card-corner tr"></div>
@@ -2422,11 +2463,11 @@ document.getElementById('modalTags').addEventListener('click', function(e) {
 
 // 证书弹窗
 var certOverlay, certModal;
-function openCertModal(imgSrc, title, subtitle) {
+function openCertModal(imgSrc, title, subtitle, qrSrc) {
   if (!certOverlay) {
     certOverlay = document.createElement('div');
     certOverlay.className = 'cert-overlay';
-    certOverlay.innerHTML = '<div class="cert-modal"><div class="cert-modal-close" onclick="closeCertModal()">&times;</div><div class="cert-modal-title"></div><div class="cert-modal-subtitle"></div><div class="cert-modal-img-wrap"><img class="cert-modal-img" alt=""></div></div>';
+    certOverlay.innerHTML = '<div class="cert-modal"><div class="cert-modal-close" onclick="closeCertModal()">&times;</div><div class="cert-modal-title"></div><div class="cert-modal-subtitle"></div><div class="cert-modal-img-wrap"><img class="cert-modal-img" alt=""></div><div class="cert-modal-qr" style="display:none"><div class="cert-modal-qr-label">扫码验证证书真伪</div><img class="cert-modal-qr-img" alt="证书验证二维码"></div></div>';
     document.body.appendChild(certOverlay);
     certOverlay.addEventListener('click', function(e) {
       if (e.target === certOverlay) closeCertModal();
@@ -2435,6 +2476,14 @@ function openCertModal(imgSrc, title, subtitle) {
   certOverlay.querySelector('.cert-modal-title').textContent = title;
   certOverlay.querySelector('.cert-modal-subtitle').textContent = subtitle;
   certOverlay.querySelector('.cert-modal-img').src = imgSrc;
+  var qrBox = certOverlay.querySelector('.cert-modal-qr');
+  var qrImg = certOverlay.querySelector('.cert-modal-qr-img');
+  if (qrSrc) {
+    qrImg.src = qrSrc;
+    qrBox.style.display = 'block';
+  } else {
+    qrBox.style.display = 'none';
+  }
   certOverlay.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
